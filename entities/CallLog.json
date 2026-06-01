@@ -1,0 +1,40 @@
+{
+  "type": "object",
+  "properties": {
+    "lead_id": {
+      "type": "string"
+    },
+    "lead_name": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "outcome": {
+      "type": "string",
+      "enum": [
+        "Answered",
+        "Voicemail",
+        "No Answer",
+        "Callback",
+        "Interested",
+        "Not Interested"
+      ]
+    },
+    "duration_seconds": {
+      "type": "number"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "follow_up_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "twilio_call_sid": {
+      "type": "string"
+    }
+  },
+  "required": [],
+  "name": "CallLog"
+}
