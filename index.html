@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Certified Emotion Code & Body Code Practitioner in Prairie du Chien, Wisconsin. Kim Helmrichs offers compassionate distance energy healing sessions to release trapped emotions and restore balance.">
+    <meta name="keywords" content="Emotion Code, Body Code, energy healing, Prairie du Chien, Wisconsin, Kim Helmrichs, distance healing, trapped emotions">
+    <meta property="og:title" content="Kim Helmrichs | Emotion Code & Body Code Practitioner | Prairie du Chien, WI">
+    <meta property="og:description" content="Certified Emotion Code & Body Code Practitioner offering compassionate distance energy healing sessions. Serving Prairie du Chien, WI and clients worldwide.">
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_US">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://Austinihde15-cpu.github.io/kim-helmrichs-healing/">
+    <title>Kim Helmrichs | Emotion Code & Body Code Practitioner | Prairie du Chien, WI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --emerald: #059669;
+            --emerald-light: #10b981;
+            --emerald-dark: #047857;
+        }
+        body { 
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            scroll-behavior: smooth;
+        }
+        h1, h2, h3, .font-serif {
+            font-family: 'Cormorant Garamond', Georgia, serif;
+        }
+        .hero-bg { 
+            background: linear-gradient(135deg, rgba(4,47,46,0.82) 0%, rgba(6,78,59,0.75) 50%, rgba(4,47,46,0.85) 100%), 
+                        url('https://images.unsplash.com/photo-1518495973542-4542c06a5843?w=2000&q=80') center/cover no-repeat fixed; 
+        }
+        .nav-link { transition: all 0.3s cubic-bezier(0.4, 0.0, 0.2, 1); }
+        .nav-link:hover { color: #10b981; transform: translateY(-1px); }
+        .section-header { position: relative; display: inline-block; }
+        .section-header:after { 
+            content: ''; 
+            position: absolute; 
+            bottom: -12px; 
+            left: 0; 
+            width: 48px; 
+            height: 2px; 
+            background: linear-gradient(to right, #10b981, #34d399); 
+            border-radius: 9999px; 
+        }
+        .section-header-center:after {
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .card-hover { transition: all 0.4s cubic-bezier(0.4, 0.0, 0.2, 1); }
+        .card-hover:hover { transform: translateY(-6px); box-shadow: 0 30px 60px -15px rgba(0,0,0,0.12); }
+        .faq-answer { 
+            max-height: 0; 
+            overflow: hidden; 
+            transition: max-height 0.4s cubic-bezier(0.4, 0.0, 0.2, 1), padding 0.3s ease; 
+        }
+        .faq-answer.open { max-height: 300px; }
+        .faq-icon { transition: transform 0.3s cubic-bezier(0.4, 0.0, 0.2, 1); }
+        .faq-icon.rotated { transform: rotate(180deg); }
+        .mobile-menu { 
+            transform: translateX(100%); 
+            transition: transform 0.35s cubic-bezier(0.4, 0.0, 0.2, 1); 
+        }
+        .mobile-menu.open { transform: translateX(0); }
+        .parallax-leaf {
+            position: absolute;
+            opacity: 0.06;
+            font-size: 180px;
+            pointer-events: none;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
+        }
+        .float-anim { animation: float 6s ease-in-out infinite; }
+        @keyframes fade-up {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-up { animation: fade-up 0.8s ease-out forwards; }
+        .fade-up-delay-1 { animation-delay: 0.15s; opacity: 0; }
+        .fade-up-delay-2 { animation-delay: 0.3s; opacity: 0; }
+        .fade-up-delay-3 { animation-delay: 0.45s; opacity: 0; }
+        .gradient-text {
+            background: linear-gradient(135deg, #10b981, #34d399, #6ee7b7);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .testimonial-star::before { content: '★★★★★'; color: #f59e0b; letter-spacing: 2px; }
+        .soft-divider {
+            background: linear-gradient(to right, transparent, #d1fae5, transparent);
+            height: 1px;
+            border: none;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, #059669, #047857);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(5,150,105,0.3);
+        }
+        .btn-primary:hover {
+            background: linear-gradient(135deg, #047857, #065f46);
+            box-shadow: 0 8px 30px rgba(5,150,105,0.4);
+            transform: translateY(-2px);
+        }
+        /* Mobile nav toggle */
+        #mobile-toggle span {
+            display: block;
+            width: 24px;
+            height: 2px;
+            background: #374151;
+            margin: 5px 0;
+            transition: all 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-stone-50 text-stone-800">
+
+    <!-- HEADER / NAV -->
+    <header class="bg-white/95 backdrop-blur-md shadow-sm sticky top-0 z-50 border-b border-stone-100">
+        <div class="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center text-white text-xl shadow-sm">🌿</div>
+                <div>
+                    <span class="font-semibold text-xl tracking-tight" style="font-family: 'Cormorant Garamond', serif;">Kim Helmrichs</span>
+                    <p class="text-xs text-emerald-600 font-medium -mt-0.5">Prairie du Chien, Wisconsin</p>
+                </div>
+            </div>
+            
+            <nav class="hidden md:flex items-center gap-7 text-sm font-medium">
+                <a href="#about" class="nav-link text-stone-500 hover:text-emerald-600">About</a>
+                <a href="#services" class="nav-link text-stone-500 hover:text-emerald-600">Services</a>
+                <a href="#pricing" class="nav-link text-stone-500 hover:text-emerald-600">Pricing</a>
+                <a href="#how" class="nav-link text-stone-500 hover:text-emerald-600">How It Works</a>
+                <a href="#testimonials" class="nav-link text-stone-500 hover:text-emerald-600">Stories</a>
+                <a href="#faq" class="nav-link text-stone-500 hover:text-emerald-600">FAQ</a>
+            </nav>
+            
+            <div class="flex items-center gap-3">
+                <a href="#contact" 
+                   class="btn-primary text-white px-6 py-3 rounded-full font-medium text-sm flex items-center gap-2">
+                    <i class="fas fa-calendar-alt text-xs"></i>
+                    Book a Session
+                </a>
+                <button id="mobile-toggle" class="md:hidden p-2" onclick="toggleMobileMenu()">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MOBILE MENU -->
+    <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-72 bg-white z-50 shadow-2xl p-8 pt-20">
+        <button onclick="toggleMobileMenu()" class="absolute top-5 right-6 text-2xl text-stone-400">✕</button>
+        <nav class="flex flex-col gap-6 text-lg font-medium">
+            <a href="#about" onclick="toggleMobileMenu()" class="text-stone-600 hover:text-emerald-600">About</a>
+            <a href="#services" onclick="toggleMobileMenu()" class="text-stone-600 hover:text-emerald-600">Services</a>
+            <a href="#pricing" onclick="toggleMobileMenu()" class="text-stone-600 hover:text-emerald-600">Pricing</a>
+            <a href="#how" onclick="toggleMobileMenu()" class="text-stone-600 hover:text-emerald-600">How It Works</a>
+            <a href="#testimonials" onclick="toggleMobileMenu()" class="text-stone-600 hover:text-emerald-600">Stories</a>
+            <a href="#faq" onclick="toggleMobileMenu()" class="text-stone-600 hover:text-emerald-600">FAQ</a>
+            <a href="#contact" onclick="toggleMobileMenu()" class="btn-primary text-white px-6 py-3 rounded-full text-center mt-4">Book a Session</a>
+        </nav>
+    </div>
+    <div id="mobile-overlay" class="hidden fixed inset-0 bg-black/30 z-40" onclick="toggleMobileMenu()"></div>
+
+    <!-- HERO -->
+    <section class="hero-bg text-white min-h-screen flex items-center relative overflow-hidden">
+        <div class="parallax-leaf top-10 right-10 float-anim">🌿</div>
+        <div class="max-w-5xl mx-auto px-6 text-center py-24">
+            <div class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-md px-5 py-2 rounded-full mb-10 border border-white/20 fade-up">
+                <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                <span class="uppercase text-xs tracking-[3px] font-medium">Certified Practitioner · Prairie du Chien, WI</span>
+            </div>
+            
+            <h1 class="text-6xl md:text-8xl font-light leading-[1.0] tracking-tight mb-8 fade-up fade-up-delay-1" style="font-family: 'Cormorant Garamond', serif;">
+                Release what weighs<br>you down.<br>
+                <em class="gradient-text not-italic font-normal">Reclaim your wholeness.</em>
+            </h1>
+            
+            <p class="max-w-2xl mx-auto text-xl md:text-2xl text-white/80 mb-12 font-light fade-up fade-up-delay-2">
+                Compassionate, distance-based Emotion Code® & Body Code® sessions. 
+                Serving Prairie du Chien, the Mississippi River Valley, and clients worldwide.
+            </p>
+            
+            <div class="flex flex-col sm:flex-row gap-4 justify-center fade-up fade-up-delay-3">
+                <a href="#contact" 
+                   class="bg-white text-emerald-800 hover:bg-emerald-50 px-10 py-5 rounded-full font-semibold text-lg inline-flex items-center justify-center gap-3 transition-all shadow-xl">
+                    <i class="fas fa-heart text-emerald-500"></i>
+                    Begin Your Healing
+                </a>
+                <a href="#about" 
+                   class="border border-white/50 hover:bg-white/10 backdrop-blur-sm px-10 py-5 rounded-full font-light text-lg inline-flex items-center justify-center gap-2 transition-all">
+                    Meet Kim
+                    <i class="fas fa-arrow-right text-sm"></i>
+                </a>
+            </div>
+            
+            <div class="mt-20 flex flex-wrap justify-center gap-x-10 gap-y-3 text-sm text-white/70">
+                <div class="flex items-center gap-2"><i class="fas fa-globe-americas text-emerald-400"></i> Distance Sessions Worldwide</div>
+                <div class="flex items-center gap-2"><i class="fas fa-leaf text-emerald-400"></i> Gentle & Non-Invasive</div>
+                <div class="flex items-center gap-2"><i class="fas fa-users text-emerald-400"></i> All Ages Welcome</div>
+                <div class="flex items-center gap-2"><i class="fas fa-lock text-emerald-400"></i> Confidential & Safe</div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce text-white/40">
+            <i class="fas fa-chevron-down text-2xl"></i>
+        </div>
+    </section>
+
+    <!-- TRUST BAR -->
+    <section class="bg-emerald-900 py-6">
+        <div class="max-w-5xl mx-auto px-6 flex flex-wrap justify-center gap-x-12 gap-y-3 text-emerald-200 text-sm font-medium">
+            <span class="flex items-center gap-2"><i class="fas fa-certificate text-emerald-400"></i> Certified Emotion Code® Practitioner</span>
+            <span class="flex items-center gap-2"><i class="fas fa-certificate text-emerald-400"></i> Certified Body Code® Practitioner</span>
+            <span class="flex items-center gap-2"><i class="fas fa-shield-alt text-emerald-400"></i> Confidential Sessions</span>
+            <span class="flex items-center gap-2"><i class="fas fa-heart text-emerald-400"></i> Prairie du Chien, WI</span>
+        </div>
+    </section>
+
+    <!-- ABOUT ME -->
+    <section id="about" class="py-28 bg-white relative overflow-hidden">
+        <div class="parallax-leaf bottom-0 left-0 float-anim" style="font-size:220px; opacity:0.03;">🌿</div>
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-12 gap-16 items-center">
+                <div class="md:col-span-5">
+                    <div class="relative">
+                        <div class="absolute -inset-4 bg-gradient-to-br from-emerald-100 to-teal-100 rounded-3xl -z-10"></div>
+                        <img src="https://images.unsplash.com/photo-1508214751196-bcfd4ca60f91?w=800&q=80" 
+                             alt="Kim Helmrichs - Certified Emotion Code & Body Code Practitioner in Prairie du Chien, WI"
+                             class="rounded-3xl shadow-2xl w-full object-cover aspect-[4/5]"
+                             loading="lazy">
+                        <div class="absolute -bottom-6 -right-6 bg-white rounded-2xl shadow-xl p-5 border border-stone-100">
+                            <div class="text-xs text-stone-500 uppercase tracking-wider mb-1">Certified in</div>
+                            <div class="font-semibold text-emerald-700 text-sm">Emotion Code® + Body Code®</div>
+                            <div class="text-xs text-stone-400 mt-1">by Dr. Bradley Nelson</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="md:col-span-7">
+                    <span class="uppercase tracking-widest text-emerald-600 text-xs font-semibold">Your Healing Guide</span>
+                    <h2 class="text-6xl font-light mt-4 leading-tight section-header" style="font-family: 'Cormorant Garamond', serif;">
+                        Hi, I'm Kim<br><em class="not-italic font-normal text-emerald-700">Helmrichs.</em>
+                    </h2>
+                    
+                    <div class="mt-12 space-y-5 text-stone-600 leading-relaxed text-lg">
+                        <p>I'm a certified Emotion Code® and Body Code® practitioner based in beautiful Prairie du Chien, Wisconsin — nestled in the heart of the Mississippi River Valley.</p>
+                        
+                        <p>My work is rooted in deep compassion and a profound respect for the body's innate wisdom. Through my own healing journey, I discovered how trapped emotions and energetic imbalances can quietly shape our health, relationships, and sense of peace.</p>
+                        
+                        <p>Now I have the privilege of helping others release these burdens and return to vibrant well-being — whether you're in Crawford County or across the globe.</p>
+                    </div>
+                    
+                    <div class="mt-10 p-6 bg-emerald-50 rounded-2xl border border-emerald-100">
+                        <p class="text-emerald-800 italic font-light text-lg" style="font-family: 'Cormorant Garamond', serif;">
+                            "Your body already knows how to heal. My role is simply to help remove what's standing in the way."
+                        </p>
+                        <p class="text-emerald-600 text-sm font-medium mt-3">— Kim Helmrichs</p>
+                    </div>
+
+                    <a href="#contact" class="mt-8 inline-flex items-center gap-2 btn-primary text-white px-8 py-4 rounded-full font-medium">
+                        <i class="fas fa-calendar-alt"></i> Book a Session with Kim
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <hr class="soft-divider">
+
+    <!-- SERVICES -->
+    <section id="services" class="py-28 bg-stone-50 relative overflow-hidden">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <span class="uppercase tracking-widest text-emerald-600 text-xs font-semibold">Healing Modalities</span>
+                <h2 class="text-6xl font-light mt-4 section-header section-header-center" style="font-family: 'Cormorant Garamond', serif;">What I Offer</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-2 gap-10 max-w-5xl mx-auto">
+                <div class="bg-white rounded-3xl p-12 shadow-lg card-hover border border-stone-100 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-40 h-40 bg-rose-50 rounded-full -translate-y-1/2 translate-x-1/2 -z-0"></div>
+                    <div class="relative z-10">
+                        <div class="text-5xl mb-6">💧</div>
+                        <h3 class="text-4xl font-light mb-5" style="font-family: 'Cormorant Garamond', serif;">Emotion Code</h3>
+                        <p class="text-stone-600 leading-relaxed mb-8">
+                            A gentle, effective method to identify and release trapped emotional energies from past experiences. These hidden energies often contribute to anxiety, physical discomfort, relationship challenges, and self-sabotage.
+                        </p>
+                        <ul class="space-y-3 text-stone-600">
+                            <li class="flex items-center gap-3">
+                                <span class="w-6 h-6 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-emerald-600 text-xs"></i></span>
+                                Anxiety & Emotional Patterns
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="w-6 h-6 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-emerald-600 text-xs"></i></span>
+                                Heart-Wall Clearing
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="w-6 h-6 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-emerald-600 text-xs"></i></span>
+                                Generational & Inherited Emotions
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="bg-white rounded-3xl p-12 shadow-lg card-hover border border-stone-100 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-40 h-40 bg-sky-50 rounded-full -translate-y-1/2 translate-x-1/2 -z-0"></div>
+                    <div class="relative z-10">
+                        <div class="text-5xl mb-6">🌀</div>
+                        <h3 class="text-4xl font-light mb-5" style="font-family: 'Cormorant Garamond', serif;">Body Code</h3>
+                        <p class="text-stone-600 leading-relaxed mb-8">
+                            A comprehensive system that identifies and corrects imbalances across six key areas: energies, circuitry, pathogens, nutrition, structural alignment, and toxicity. The ultimate "user manual" for your body.
+                        </p>
+                        <ul class="space-y-3 text-stone-600">
+                            <li class="flex items-center gap-3">
+                                <span class="w-6 h-6 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-emerald-600 text-xs"></i></span>
+                                Chronic Pain & Fatigue
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="w-6 h-6 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-emerald-600 text-xs"></i></span>
+                                Sleep, Digestion & Immunity
+                            </li>
+                            <li class="flex items-center gap-3">
+                                <span class="w-6 h-6 bg-emerald-100 rounded-full flex items-center justify-center flex-shrink-0"><i class="fas fa-check text-emerald-600 text-xs"></i></span>
+                                Overall Vitality & Balance
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="mt-16 text-center">
+                <p class="text-stone-500 text-lg max-w-lg mx-auto">
+                    All sessions are conducted remotely — <strong class="text-emerald-700">distance is never a barrier</strong> to powerful, lasting healing.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing" class="py-28 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <span class="uppercase tracking-widest text-emerald-600 text-xs font-semibold">Investment in Your Healing</span>
+                <h2 class="text-6xl font-light mt-4 section-header section-header-center" style="font-family: 'Cormorant Garamond', serif;">Session Pricing</h2>
+                <p class="mt-8 text-stone-500 max-w-md mx-auto">Transparent, fair pricing for every budget and healing journey.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto items-center">
+                <div class="bg-white rounded-3xl p-10 shadow-lg card-hover text-center border border-stone-100">
+                    <div class="text-3xl mb-3">🌱</div>
+                    <h3 class="text-2xl font-medium mb-2" style="font-family: 'Cormorant Garamond', serif;">Discovery Session</h3>
+                    <div class="text-5xl font-light text-emerald-600 my-6" style="font-family: 'Cormorant Garamond', serif;">$85</div>
+                    <p class="text-stone-400 text-sm mb-8">30–40 minutes · Perfect for first-timers</p>
+                    <ul class="text-sm text-stone-500 space-y-2 mb-8 text-left">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400 text-xs"></i> Intro to Emotion Code</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400 text-xs"></i> Targeted emotion release</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400 text-xs"></i> Post-session notes</li>
+                    </ul>
+                    <a href="#contact" class="block w-full bg-emerald-50 hover:bg-emerald-100 text-emerald-700 py-3.5 rounded-full font-medium transition-colors text-sm">Book Discovery</a>
+                </div>
+                
+                <div class="bg-gradient-to-br from-emerald-700 to-teal-800 text-white rounded-3xl p-10 shadow-2xl card-hover text-center relative">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-amber-400 text-emerald-900 text-xs font-bold tracking-wider px-6 py-1.5 rounded-full">MOST POPULAR</div>
+                    <div class="text-3xl mb-3">✨</div>
+                    <h3 class="text-2xl font-medium mb-2" style="font-family: 'Cormorant Garamond', serif;">Standard Session</h3>
+                    <div class="text-6xl font-light my-6" style="font-family: 'Cormorant Garamond', serif;">$125</div>
+                    <p class="text-emerald-100 text-sm mb-8">45–60 minutes · Full Emotion or Body Code</p>
+                    <ul class="text-sm text-emerald-100 space-y-2 mb-8 text-left">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-300 text-xs"></i> Full session with Kim</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-300 text-xs"></i> Emotion & Body Code</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-300 text-xs"></i> Detailed session summary</li>
+                    </ul>
+                    <a href="#contact" class="block w-full bg-white text-emerald-700 hover:bg-emerald-50 py-3.5 rounded-full font-semibold transition-colors text-sm">Book Standard</a>
+                </div>
+                
+                <div class="bg-white rounded-3xl p-10 shadow-lg card-hover text-center border border-stone-100">
+                    <div class="text-3xl mb-3">🌸</div>
+                    <h3 class="text-2xl font-medium mb-2" style="font-family: 'Cormorant Garamond', serif;">Transformation Package</h3>
+                    <div class="text-5xl font-light text-emerald-600 my-6" style="font-family: 'Cormorant Garamond', serif;">$575</div>
+                    <p class="text-stone-400 text-sm mb-2">5 sessions · Best value</p>
+                    <p class="text-xs text-emerald-600 font-medium mb-6">Save $50 vs. individual sessions</p>
+                    <ul class="text-sm text-stone-500 space-y-2 mb-8 text-left">
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400 text-xs"></i> 5 full sessions</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400 text-xs"></i> Priority scheduling</li>
+                        <li class="flex items-center gap-2"><i class="fas fa-check text-emerald-400 text-xs"></i> Lasting, deep results</li>
+                    </ul>
+                    <a href="#contact" class="block w-full bg-emerald-50 hover:bg-emerald-100 text-emerald-700 py-3.5 rounded-full font-medium transition-colors text-sm">Get the Package</a>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12 text-sm text-stone-400">
+                <p>💳 Flexible payment options &nbsp;·&nbsp; 🤝 Limited sliding scale available &nbsp;·&nbsp; 🎁 Gift certificates available</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS -->
+    <section id="how" class="py-28 bg-gradient-to-br from-stone-50 to-emerald-50/30">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="grid md:grid-cols-12 gap-16">
+                <div class="md:col-span-5">
+                    <div class="sticky top-28">
+                        <span class="uppercase tracking-widest text-emerald-600 text-xs font-semibold">The Process</span>
+                        <h2 class="text-6xl font-light leading-tight mt-4 section-header" style="font-family: 'Cormorant Garamond', serif;">Simple.<br>Gentle.<br>Transformative.</h2>
+                        <p class="mt-12 text-lg text-stone-500 leading-relaxed">Healing should feel supportive — here's exactly what to expect when you work with Kim.</p>
+                        <a href="#contact" class="mt-8 inline-flex items-center gap-2 text-emerald-600 font-medium hover:text-emerald-700 transition-colors">
+                            Start your journey <i class="fas fa-arrow-right text-sm"></i>
+                        </a>
+                    </div>
+                </div>
+                <div class="md:col-span-7 space-y-12 pt-4">
+                    <div class="flex gap-8 items-start">
+                        <div class="w-14 h-14 bg-emerald-600 text-white rounded-2xl flex-shrink-0 flex items-center justify-center font-light text-2xl shadow-lg" style="font-family: 'Cormorant Garamond', serif;">1</div>
+                        <div class="pt-2">
+                            <h3 class="text-3xl font-light" style="font-family: 'Cormorant Garamond', serif;">Book Your Session</h3>
+                            <p class="mt-3 text-stone-500 leading-relaxed">Choose a convenient time using Kim's online scheduler. No special preparation needed — just an open heart and willingness to heal.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-8 items-start">
+                        <div class="w-14 h-14 bg-emerald-600 text-white rounded-2xl flex-shrink-0 flex items-center justify-center font-light text-2xl shadow-lg" style="font-family: 'Cormorant Garamond', serif;">2</div>
+                        <div class="pt-2">
+                            <h3 class="text-3xl font-light" style="font-family: 'Cormorant Garamond', serif;">We Connect Remotely</h3>
+                            <p class="mt-3 text-stone-500 leading-relaxed">Via phone, video, or silent proxy — your choice. Your energy is accessed with your full permission through muscle testing. No travel required, ever.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-8 items-start">
+                        <div class="w-14 h-14 bg-emerald-600 text-white rounded-2xl flex-shrink-0 flex items-center justify-center font-light text-2xl shadow-lg" style="font-family: 'Cormorant Garamond', serif;">3</div>
+                        <div class="pt-2">
+                            <h3 class="text-3xl font-light" style="font-family: 'Cormorant Garamond', serif;">Release & Rebalance</h3>
+                            <p class="mt-3 text-stone-500 leading-relaxed">Trapped emotions and imbalances are gently cleared. Many clients feel lighter right away, with continued shifts unfolding beautifully in the days that follow.</p>
+                        </div>
+                    </div>
+                    <div class="flex gap-8 items-start">
+                        <div class="w-14 h-14 bg-emerald-600 text-white rounded-2xl flex-shrink-0 flex items-center justify-center font-light text-2xl shadow-lg" style="font-family: 'Cormorant Garamond', serif;">4</div>
+                        <div class="pt-2">
+                            <h3 class="text-3xl font-light" style="font-family: 'Cormorant Garamond', serif;">Integrate & Thrive</h3>
+                            <p class="mt-3 text-stone-500 leading-relaxed">Kim sends a personalized session summary. You rest, drink water, and allow the healing to settle. Many clients notice profound changes within 24–72 hours.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- TESTIMONIALS -->
+    <section id="testimonials" class="py-28 bg-white">
+        <div class="max-w-6xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <span class="uppercase tracking-widest text-emerald-600 text-xs font-semibold">Client Stories</span>
+                <h2 class="text-6xl font-light mt-4 section-header section-header-center" style="font-family: 'Cormorant Garamond', serif;">What Clients Are Saying</h2>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="bg-stone-50 p-8 rounded-3xl card-hover border border-stone-100">
+                    <div class="testimonial-star mb-5 text-sm"></div>
+                    <p class="italic text-stone-600 leading-relaxed text-lg" style="font-family: 'Cormorant Garamond', serif;">"After my first session with Kim, the emotional weight I'd carried for years finally lifted. I feel clearer and more at peace than I have in a decade."</p>
+                    <div class="mt-8 flex items-center gap-4">
+                        <div class="w-11 h-11 bg-gradient-to-br from-amber-200 to-amber-300 rounded-full flex-shrink-0 flex items-center justify-center text-amber-700 font-semibold">S</div>
+                        <div>
+                            <div class="font-medium text-stone-700">Sarah M.</div>
+                            <div class="text-xs text-stone-400">Prairie du Chien, WI</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-stone-50 p-8 rounded-3xl card-hover border border-stone-100">
+                    <div class="testimonial-star mb-5 text-sm"></div>
+                    <p class="italic text-stone-600 leading-relaxed text-lg" style="font-family: 'Cormorant Garamond', serif;">"The Body Code work helped my chronic back pain tremendously. I'm sleeping better and have more energy than I have in years. Kim is truly gifted."</p>
+                    <div class="mt-8 flex items-center gap-4">
+                        <div class="w-11 h-11 bg-gradient-to-br from-blue-200 to-blue-300 rounded-full flex-shrink-0 flex items-center justify-center text-blue-700 font-semibold">M</div>
+                        <div>
+                            <div class="font-medium text-stone-700">Michael T.</div>
+                            <div class="text-xs text-stone-400">La Crosse, WI</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-stone-50 p-8 rounded-3xl card-hover border border-stone-100">
+                    <div class="testimonial-star mb-5 text-sm"></div>
+                    <p class="italic text-stone-600 leading-relaxed text-lg" style="font-family: 'Cormorant Garamond', serif;">"Working with Kim was deeply healing. She holds such a safe, loving space. I highly recommend her to anyone seeking real, lasting transformation."</p>
+                    <div class="mt-8 flex items-center gap-4">
+                        <div class="w-11 h-11 bg-gradient-to-br from-purple-200 to-purple-300 rounded-full flex-shrink-0 flex items-center justify-center text-purple-700 font-semibold">E</div>
+                        <div>
+                            <div class="font-medium text-stone-700">Elena R.</div>
+                            <div class="text-xs text-stone-400">Minnesota</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="py-28 bg-stone-50">
+        <div class="max-w-3xl mx-auto px-6">
+            <div class="text-center mb-20">
+                <span class="uppercase tracking-widest text-emerald-600 text-xs font-semibold">Got Questions?</span>
+                <h2 class="text-6xl font-light mt-4 section-header section-header-center" style="font-family: 'Cormorant Garamond', serif;">Frequently Asked</h2>
+            </div>
+            
+            <div class="space-y-4">
+                <div class="faq-item border border-stone-200 rounded-2xl overflow-hidden bg-white">
+                    <button onclick="toggleFAQ(this)" class="faq-question w-full px-8 py-6 text-left flex justify-between items-center hover:bg-stone-50 transition-colors">
+                        <span class="font-medium text-lg pr-8">What is the Emotion Code?</span>
+                        <i class="fas fa-chevron-down text-emerald-500 faq-icon flex-shrink-0"></i>
+                    </button>
+                    <div class="faq-answer px-8 text-stone-500 leading-relaxed">
+                        <div class="pb-6">The Emotion Code is a simple yet powerful energy healing technique that identifies and releases trapped emotions using muscle testing and magnetic energy. These released emotions often create space for improved physical health, emotional balance, and greater peace of mind.</div>
+                    </div>
+                </div>
+                
+                <div class="faq-item border border-stone-200 rounded-2xl overflow-hidden bg-white">
+                    <button onclick="toggleFAQ(this)" class="faq-question w-full px-8 py-6 text-left flex justify-between items-center hover:bg-stone-50 transition-colors">
+                        <span class="font-medium text-lg pr-8">What is the Body Code?</span>
+                        <i class="fas fa-chevron-down text-emerald-500 faq-icon flex-shrink-0"></i>
+                    </button>
+                    <div class="faq-answer px-8 text-stone-500 leading-relaxed">
+                        <div class="pb-6">The Body Code is an advanced healing system that corrects imbalances in six key areas of the body. It works like a comprehensive manual to restore optimal function and support the body's natural self-healing ability across physical, emotional, and energetic levels.</div>
+                    </div>
+                </div>
+                
+                <div class="faq-item border border-stone-200 rounded-2xl overflow-hidden bg-white">
+                    <button onclick="toggleFAQ(this)" class="faq-question w-full px-8 py-6 text-left flex justify-between items-center hover:bg-stone-50 transition-colors">
+                        <span class="font-medium text-lg pr-8">How do remote sessions work?</span>
+                        <i class="fas fa-chevron-down text-emerald-500 faq-icon flex-shrink-0"></i>
+                    </button>
+                    <div class="faq-answer px-8 text-stone-500 leading-relaxed">
+                        <div class="pb-6">Energy transcends physical distance. Using your permission and focused intention, Kim connects with your energy field through proxy muscle testing. Clients around the world feel real-time shifts — often from hundreds or thousands of miles away.</div>
+                    </div>
+                </div>
+                
+                <div class="faq-item border border-stone-200 rounded-2xl overflow-hidden bg-white">
+                    <button onclick="toggleFAQ(this)" class="faq-question w-full px-8 py-6 text-left flex justify-between items-center hover:bg-stone-50 transition-colors">
+                        <span class="font-medium text-lg pr-8">How many sessions will I need?</span>
+                        <i class="fas fa-chevron-down text-emerald-500 faq-icon flex-shrink-0"></i>
+                    </button>
+                    <div class="faq-answer px-8 text-stone-500 leading-relaxed">
+                        <div class="pb-6">Results vary by individual. Many notice meaningful shifts in 1–3 sessions. For deeper or long-standing issues, a package of 4–6 sessions is often ideal. Kim will create a personalized plan together with you.</div>
+                    </div>
+                </div>
+
+                <div class="faq-item border border-stone-200 rounded-2xl overflow-hidden bg-white">
+                    <button onclick="toggleFAQ(this)" class="faq-question w-full px-8 py-6 text-left flex justify-between items-center hover:bg-stone-50 transition-colors">
+                        <span class="font-medium text-lg pr-8">Is this a replacement for medical care?</span>
+                        <i class="fas fa-chevron-down text-emerald-500 faq-icon flex-shrink-0"></i>
+                    </button>
+                    <div class="faq-answer px-8 text-stone-500 leading-relaxed">
+                        <div class="pb-6">Energy healing is a complementary modality and is not a substitute for medical diagnosis, treatment, or advice. Kim works alongside — not instead of — your existing healthcare providers.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section id="contact" class="py-32 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-emerald-800 via-teal-800 to-emerald-900"></div>
+        <div class="absolute inset-0 opacity-10" style="background-image: url('https://images.unsplash.com/photo-1501854140801-50d01698950b?w=2000&q=60'); background-size: cover; background-position: center;"></div>
+        <div class="parallax-leaf top-10 left-10 float-anim text-white" style="opacity:0.05;">🌿</div>
+        <div class="relative max-w-2xl mx-auto px-6 text-center text-white">
+            <div class="inline-flex items-center gap-2 bg-white/15 backdrop-blur-sm px-5 py-2 rounded-full mb-8 border border-white/20">
+                <div class="w-2 h-2 bg-emerald-400 rounded-full animate-pulse"></div>
+                <span class="uppercase text-xs tracking-[3px] font-medium">Accepting New Clients</span>
+            </div>
+            <h2 class="text-6xl font-light tracking-tight" style="font-family: 'Cormorant Garamond', serif;">Ready to feel lighter<br>and more aligned?</h2>
+            <p class="mt-6 text-xl text-white/80 font-light">Your healing journey begins with a single step.<br>Kim would be honored to support you.</p>
+            
+            <a href="https://calendly.com/your-link-here" target="_blank"
+               class="mt-12 inline-flex items-center gap-3 bg-white text-emerald-800 hover:bg-emerald-50 px-12 py-6 rounded-full text-xl font-semibold transition-all shadow-2xl">
+                <i class="fas fa-calendar-alt text-emerald-500"></i>
+                Schedule Your Session
+            </a>
+            
+            <p class="mt-10 text-sm text-white/60">Or email Kim directly: <a href="mailto:your.email@example.com" class="underline hover:text-white transition-colors">your.email@example.com</a></p>
+
+            <div class="mt-16 flex flex-wrap justify-center gap-8 text-sm text-white/50">
+                <span><i class="fas fa-lock mr-2"></i>100% Confidential</span>
+                <span><i class="fas fa-globe mr-2"></i>Available Worldwide</span>
+                <span><i class="fas fa-heart mr-2"></i>Compassionate Care</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="bg-stone-950 text-white/50 py-16">
+        <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-3 gap-12">
+            <div>
+                <div class="flex items-center gap-3 text-white mb-5">
+                    <div class="w-9 h-9 bg-emerald-600 rounded-xl flex items-center justify-center text-xl">🌿</div>
+                    <span class="font-medium text-xl tracking-tight" style="font-family: 'Cormorant Garamond', serif;">Kim Helmrichs</span>
+                </div>
+                <p class="text-sm leading-relaxed">Certified Emotion Code® & Body Code® Practitioner<br>Prairie du Chien, Wisconsin</p>
+            </div>
+            
+            <div>
+                <div class="font-medium text-white/80 mb-5 text-sm uppercase tracking-wider">Navigate</div>
+                <div class="grid grid-cols-2 gap-y-3 text-sm">
+                    <a href="#about" class="hover:text-white transition-colors">About Kim</a>
+                    <a href="#services" class="hover:text-white transition-colors">Services</a>
+                    <a href="#pricing" class="hover:text-white transition-colors">Pricing</a>
+                    <a href="#how" class="hover:text-white transition-colors">How It Works</a>
+                    <a href="#faq" class="hover:text-white transition-colors">FAQ</a>
+                    <a href="#contact" class="hover:text-white transition-colors">Book a Session</a>
+                </div>
+            </div>
+            
+            <div>
+                <div class="font-medium text-white/80 mb-5 text-sm uppercase tracking-wider">Connect</div>
+                <div class="flex gap-5 text-2xl mb-8">
+                    <a href="#" class="hover:text-emerald-400 transition-colors" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+                    <a href="#" class="hover:text-emerald-400 transition-colors" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+                <p class="text-xs leading-relaxed">© 2026 Kim Helmrichs. All Rights Reserved.<br>
+                <span class="text-white/30">Disclaimer: Energy healing is a complementary modality. Not a substitute for medical advice, diagnosis, or treatment.</span></p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // FAQ Toggle
+        function toggleFAQ(button) {
+            const answer = button.parentElement.querySelector('.faq-answer');
+            const icon = button.querySelector('.faq-icon');
+            const isOpen = answer.classList.contains('open');
+            
+            document.querySelectorAll('.faq-answer').forEach(a => a.classList.remove('open'));
+            document.querySelectorAll('.faq-icon').forEach(i => i.classList.remove('rotated'));
+            
+            if (!isOpen) {
+                answer.classList.add('open');
+                icon.classList.add('rotated');
+            }
+        }
+
+        // Mobile Menu
+        function toggleMobileMenu() {
+            const menu = document.getElementById('mobile-menu');
+            const overlay = document.getElementById('mobile-overlay');
+            menu.classList.toggle('open');
+            overlay.classList.toggle('hidden');
+            document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+        }
+
+        // Smooth scroll with offset for sticky nav
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offset = 80;
+                    const top = target.getBoundingClientRect().top + window.scrollY - offset;
+                    window.scrollTo({ top, behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Intersection Observer for scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                    entry.target.style.transition = 'opacity 0.7s ease, transform 0.7s ease';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.card-hover, .faq-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
