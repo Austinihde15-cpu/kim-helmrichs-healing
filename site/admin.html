@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Harmonic Flow Wellness — Content Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        :root { --lavender: #7c5cbf; --gold: #c9a84c; --deep: #2d1b4e; --cream: #fdf8f5; }
+        * { -webkit-font-smoothing: antialiased; }
+        body { font-family: 'Jost', sans-serif; background: #f3eeff; color: var(--deep); }
+        h1,h2,h3 { font-family: 'Cormorant Garamond', serif; }
+
+        .card {
+            background: white;
+            border-radius: 1.25rem;
+            border: 1px solid rgba(124,92,191,0.1);
+            box-shadow: 0 4px 24px rgba(45,27,78,0.06);
+        }
+        .tab-btn {
+            padding: 0.6rem 1.5rem;
+            border-radius: 9999px;
+            font-size: 0.875rem;
+            font-weight: 400;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+        .tab-btn.active {
+            background: var(--lavender);
+            color: white;
+        }
+        .tab-btn:not(.active) {
+            background: white;
+            border-color: rgba(124,92,191,0.2);
+            color: var(--deep);
+        }
+        .tab-btn:not(.active):hover { border-color: var(--lavender); color: var(--lavender); }
+
+        .input {
+            width: 100%;
+            padding: 0.65rem 1rem;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(124,92,191,0.2);
+            font-family: 'Jost', sans-serif;
+            font-size: 0.9rem;
+            color: var(--deep);
+            background: #faf8ff;
+            outline: none;
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+        .input:focus { border-color: var(--lavender); box-shadow: 0 0 0 3px rgba(124,92,191,0.1); }
+        textarea.input { resize: vertical; min-height: 90px; }
+
+        .label { display: block; font-size: 0.7rem; letter-spacing: 0.1em; color: var(--lavender); margin-bottom: 0.35rem; font-weight: 400; }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #7c5cbf, #a07de0);
+            color: white;
+            padding: 0.6rem 1.4rem;
+            border-radius: 9999px;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            border: none;
+            transition: all 0.2s;
+            display: inline-flex; align-items: center; gap: 0.4rem;
+        }
+        .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(124,92,191,0.35); }
+        .btn-primary:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
+
+        .btn-danger {
+            background: rgba(239,68,68,0.08);
+            color: #dc2626;
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            border: 1px solid rgba(239,68,68,0.15);
+            transition: all 0.2s;
+        }
+        .btn-danger:hover { background: rgba(239,68,68,0.15); }
+
+        .btn-ghost {
+            background: rgba(124,92,191,0.08);
+            color: var(--lavender);
+            padding: 0.5rem 1rem;
+            border-radius: 9999px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            border: 1px solid rgba(124,92,191,0.15);
+            transition: all 0.2s;
+        }
+        .btn-ghost:hover { background: rgba(124,92,191,0.15); }
+
+        .record-card {
+            background: #faf8ff;
+            border: 1px solid rgba(124,92,191,0.12);
+            border-radius: 1rem;
+            padding: 1.25rem;
+            transition: box-shadow 0.2s;
+        }
+        .record-card:hover { box-shadow: 0 4px 20px rgba(124,92,191,0.1); }
+
+        .toast {
+            position: fixed;
+            bottom: 2rem; right: 2rem;
+            background: var(--deep);
+            color: white;
+            padding: 0.875rem 1.5rem;
+            border-radius: 0.875rem;
+            font-size: 0.875rem;
+            transform: translateY(100px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.4,0,0.2,1);
+            z-index: 999;
+            display: flex; align-items: center; gap: 0.5rem;
+        }
+        .toast.show { transform: translateY(0); opacity: 1; }
+        .toast.success { background: #1a5c3a; }
+        .toast.error { background: #7f1d1d; }
+
+        .badge-active {
+            background: rgba(34,197,94,0.12);
+            color: #166534;
+            border: 1px solid rgba(34,197,94,0.2);
+            padding: 0.2rem 0.7rem;
+            border-radius: 9999px;
+            font-size: 0.7rem;
+            letter-spacing: 0.05em;
+        }
+        .badge-inactive {
+            background: rgba(156,163,175,0.15);
+            color: #6b7280;
+            border: 1px solid rgba(156,163,175,0.2);
+            padding: 0.2rem 0.7rem;
+            border-radius: 9999px;
+            font-size: 0.7rem;
+            letter-spacing: 0.05em;
+        }
+
+        .modal-overlay {
+            display: none;
+            position: fixed; inset: 0;
+            background: rgba(15,8,32,0.6);
+            z-index: 100;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+        .modal-overlay.open { display: flex; }
+        .modal {
+            background: white;
+            border-radius: 1.5rem;
+            padding: 2rem;
+            width: 100%;
+            max-width: 560px;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.3);
+        }
+
+        .stars-input label { cursor: pointer; font-size: 1.5rem; transition: color 0.15s; }
+        .stars-input input[type=radio] { display: none; }
+        .stars-input label { color: #d1c4e9; }
+        .stars-input input[type=radio]:checked ~ label,
+        .stars-input label:hover,
+        .stars-input label:hover ~ label { color: #c9a84c; }
+
+        .toggle {
+            position: relative; display: inline-block;
+            width: 44px; height: 24px;
+        }
+        .toggle input { opacity: 0; width: 0; height: 0; }
+        .toggle-slider {
+            position: absolute; inset: 0;
+            background: #d1c4e9;
+            border-radius: 9999px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .toggle-slider::before {
+            content: '';
+            position: absolute;
+            left: 3px; bottom: 3px;
+            width: 18px; height: 18px;
+            background: white;
+            border-radius: 50%;
+            transition: transform 0.2s;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+        }
+        .toggle input:checked + .toggle-slider { background: var(--lavender); }
+        .toggle input:checked + .toggle-slider::before { transform: translateX(20px); }
+
+        .section-panel { display: none; }
+        .section-panel.active { display: block; }
+
+        .loading { display: flex; align-items: center; gap: 0.5rem; color: #9a8aac; font-size: 0.9rem; }
+        .spinner {
+            width: 18px; height: 18px;
+            border: 2px solid rgba(124,92,191,0.2);
+            border-top-color: var(--lavender);
+            border-radius: 50%;
+            animation: spin 0.7s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+    </style>
+</head>
+<body class="min-h-screen">
+
+<!-- Toast -->
+<div id="toast" class="toast"><i id="toast-icon" class="fas fa-check"></i> <span id="toast-msg">Saved!</span></div>
+
+<!-- Header -->
+<header class="sticky top-0 z-50 border-b" style="background: white; border-color: rgba(124,92,191,0.1);">
+    <div class="max-w-5xl mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full flex items-center justify-center text-sm" style="background: linear-gradient(135deg, #7c5cbf, #c084a8);">🌊</div>
+            <div>
+                <span style="font-family: 'Cormorant Garamond', serif; font-size: 1.15rem; color: var(--deep);">Harmonic Flow Wellness</span>
+                <span class="text-xs font-light ml-2" style="color: #9a8aac;">Content Dashboard</span>
+            </div>
+        </div>
+        <a href="https://harmonicflowwellness.com" target="_blank" class="btn-ghost text-xs flex items-center gap-1.5">
+            <i class="fas fa-external-link-alt text-xs"></i> View Live Site
+        </a>
+    </div>
+</header>
+
+<main class="max-w-5xl mx-auto px-6 py-10">
+
+    <!-- Welcome -->
+    <div class="mb-8">
+        <h1 style="font-size: 2.2rem; font-weight: 300;">Good to see you, Kim 👋</h1>
+        <p class="text-sm font-light mt-1" style="color: #9a8aac;">Edit your testimonials and services below. Changes save instantly.</p>
+    </div>
+
+    <!-- Tabs -->
+    <div class="flex gap-3 mb-8">
+        <button class="tab-btn active" onclick="switchTab('testimonials', this)">
+            <i class="fas fa-star mr-1.5"></i> Testimonials
+        </button>
+        <button class="tab-btn" onclick="switchTab('services', this)">
+            <i class="fas fa-leaf mr-1.5"></i> Services
+        </button>
+    </div>
+
+    <!-- ═══ TESTIMONIALS PANEL ═══ -->
+    <div id="panel-testimonials" class="section-panel active">
+        <div class="card p-6 md:p-8">
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h2 style="font-size: 1.6rem; font-weight: 400;">Client Testimonials</h2>
+                    <p class="text-xs font-light mt-1" style="color: #9a8aac;">These appear on your website's "Transformations" section.</p>
+                </div>
+                <button onclick="openModal('testimonial')" class="btn-primary">
+                    <i class="fas fa-plus text-xs"></i> Add New
+                </button>
+            </div>
+
+            <div id="testimonials-list">
+                <div class="loading"><div class="spinner"></div> Loading testimonials...</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ═══ SERVICES PANEL ═══ -->
+    <div id="panel-services" class="section-panel">
+        <div class="card p-6 md:p-8">
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h2 style="font-size: 1.6rem; font-weight: 400;">Healing Services</h2>
+                    <p class="text-xs font-light mt-1" style="color: #9a8aac;">These appear in your "What I Offer" section.</p>
+                </div>
+                <button onclick="openModal('service')" class="btn-primary">
+                    <i class="fas fa-plus text-xs"></i> Add New
+                </button>
+            </div>
+
+            <div id="services-list">
+                <div class="loading"><div class="spinner"></div> Loading services...</div>
+            </div>
+        </div>
+    </div>
+
+</main>
+
+<!-- ═══ TESTIMONIAL MODAL ═══ -->
+<div id="modal-testimonial" class="modal-overlay" onclick="closeModalIf(event, 'testimonial')">
+    <div class="modal">
+        <div class="flex justify-between items-center mb-6">
+            <h3 style="font-size: 1.5rem; font-weight: 400;" id="tmodal-title">Add Testimonial</h3>
+            <button onclick="closeModal('testimonial')" class="text-gray-400 hover:text-gray-600 text-xl">✕</button>
+        </div>
+
+        <input type="hidden" id="t-id">
+        <div class="space-y-4">
+            <div>
+                <label class="label">CLIENT NAME *</label>
+                <input type="text" id="t-name" class="input" placeholder="e.g. Sarah M.">
+            </div>
+            <div>
+                <label class="label">LOCATION</label>
+                <input type="text" id="t-location" class="input" placeholder="e.g. Prairie du Chien, WI">
+            </div>
+            <div>
+                <label class="label">THEIR WORDS *</label>
+                <textarea id="t-quote" class="input" placeholder="What did they say about working with Kim?"></textarea>
+            </div>
+            <div>
+                <label class="label">STAR RATING</label>
+                <div class="stars-input flex flex-row-reverse justify-end gap-1" id="t-stars-wrap">
+                    <input type="radio" name="t-stars" id="ts5" value="5"><label for="ts5">★</label>
+                    <input type="radio" name="t-stars" id="ts4" value="4"><label for="ts4">★</label>
+                    <input type="radio" name="t-stars" id="ts3" value="3"><label for="ts3">★</label>
+                </div>
+            </div>
+            <div>
+                <label class="label">SORT ORDER</label>
+                <input type="number" id="t-order" class="input" placeholder="1 = first" min="1">
+            </div>
+            <div class="flex items-center gap-3">
+                <label class="toggle">
+                    <input type="checkbox" id="t-active" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+                <span class="text-sm font-light">Show on website</span>
+            </div>
+        </div>
+
+        <div class="flex gap-3 mt-8">
+            <button onclick="saveTestimonial()" id="t-save-btn" class="btn-primary flex-1 justify-center">
+                <i class="fas fa-save text-xs"></i> Save Testimonial
+            </button>
+            <button onclick="closeModal('testimonial')" class="btn-ghost">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<!-- ═══ SERVICE MODAL ═══ -->
+<div id="modal-service" class="modal-overlay" onclick="closeModalIf(event, 'service')">
+    <div class="modal">
+        <div class="flex justify-between items-center mb-6">
+            <h3 style="font-size: 1.5rem; font-weight: 400;" id="smodal-title">Add Service</h3>
+            <button onclick="closeModal('service')" class="text-gray-400 hover:text-gray-600 text-xl">✕</button>
+        </div>
+
+        <input type="hidden" id="s-id">
+        <div class="space-y-4">
+            <div class="grid grid-cols-4 gap-3">
+                <div>
+                    <label class="label">EMOJI</label>
+                    <input type="text" id="s-emoji" class="input text-center text-2xl" placeholder="✨" maxlength="2">
+                </div>
+                <div class="col-span-3">
+                    <label class="label">SERVICE NAME *</label>
+                    <input type="text" id="s-name" class="input" placeholder="e.g. Emotion Code">
+                </div>
+            </div>
+            <div>
+                <label class="label">TAGLINE</label>
+                <input type="text" id="s-tagline" class="input" placeholder="One short line — e.g. Release what holds you back">
+            </div>
+            <div>
+                <label class="label">DESCRIPTION *</label>
+                <textarea id="s-description" class="input" placeholder="Describe this healing modality in 2–3 sentences..."></textarea>
+            </div>
+            <div>
+                <label class="label">BENEFIT 1</label>
+                <input type="text" id="s-b1" class="input" placeholder="e.g. Anxiety & Emotional Patterns">
+            </div>
+            <div>
+                <label class="label">BENEFIT 2</label>
+                <input type="text" id="s-b2" class="input" placeholder="e.g. Heart-Wall Clearing">
+            </div>
+            <div>
+                <label class="label">BENEFIT 3</label>
+                <input type="text" id="s-b3" class="input" placeholder="e.g. Inherited & Generational Emotions">
+            </div>
+            <div>
+                <label class="label">SORT ORDER</label>
+                <input type="number" id="s-order" class="input" placeholder="1 = first" min="1">
+            </div>
+            <div class="flex items-center gap-3">
+                <label class="toggle">
+                    <input type="checkbox" id="s-active" checked>
+                    <span class="toggle-slider"></span>
+                </label>
+                <span class="text-sm font-light">Show on website</span>
+            </div>
+        </div>
+
+        <div class="flex gap-3 mt-8">
+            <button onclick="saveService()" id="s-save-btn" class="btn-primary flex-1 justify-center">
+                <i class="fas fa-save text-xs"></i> Save Service
+            </button>
+            <button onclick="closeModal('service')" class="btn-ghost">Cancel</button>
+        </div>
+    </div>
+</div>
+
+<!-- ═══ CONFIRM DELETE MODAL ═══ -->
+<div id="modal-confirm" class="modal-overlay" onclick="closeModalIf(event, 'confirm')">
+    <div class="modal" style="max-width: 380px;">
+        <div class="text-center">
+            <div class="text-4xl mb-4">🗑️</div>
+            <h3 style="font-size: 1.4rem; font-weight: 400;" class="mb-2">Delete this?</h3>
+            <p class="text-sm font-light mb-8" style="color: #9a8aac;" id="confirm-msg">This cannot be undone.</p>
+            <div class="flex gap-3 justify-center">
+                <button onclick="confirmDelete()" class="btn-danger px-6">Yes, delete</button>
+                <button onclick="closeModal('confirm')" class="btn-ghost px-6">Cancel</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// ══════════════════════════════════════════════════════════
+// CONFIG — Base44 API
+// ══════════════════════════════════════════════════════════
+const APP_ID = '6a1d6fa795cce18bf986b605';
+const API_BASE = `https://api.base44.com/api/apps/${APP_ID}/entities`;
+
+// We use the public/unauthenticated read for now;
+// for write operations we'll use the same endpoint
+// (this page should be password-protected or access-restricted in practice)
+
+let pendingDelete = { type: null, id: null };
+let testimonials = [];
+let services = [];
+
+// ══════════════════════════════════════════════════════════
+// TABS
+// ══════════════════════════════════════════════════════════
+function switchTab(name, btn) {
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.querySelectorAll('.section-panel').forEach(p => p.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('panel-' + name).classList.add('active');
+}
+
+// ══════════════════════════════════════════════════════════
+// TOAST
+// ══════════════════════════════════════════════════════════
+function showToast(msg, type = 'success') {
+    const t = document.getElementById('toast');
+    const icon = document.getElementById('toast-icon');
+    document.getElementById('toast-msg').textContent = msg;
+    t.className = 'toast ' + type;
+    icon.className = type === 'success' ? 'fas fa-check' : 'fas fa-exclamation-triangle';
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ══════════════════════════════════════════════════════════
+// MODALS
+// ══════════════════════════════════════════════════════════
+function openModal(type, data = null) {
+    if (type === 'testimonial') {
+        document.getElementById('tmodal-title').textContent = data ? 'Edit Testimonial' : 'Add Testimonial';
+        document.getElementById('t-id').value = data?.id || '';
+        document.getElementById('t-name').value = data?.name || '';
+        document.getElementById('t-location').value = data?.location || '';
+        document.getElementById('t-quote').value = data?.quote || '';
+        document.getElementById('t-order').value = data?.sort_order || '';
+        document.getElementById('t-active').checked = data ? data.is_active !== false : true;
+        const stars = data?.stars || 5;
+        const radio = document.querySelector(`input[name="t-stars"][value="${stars}"]`);
+        if (radio) radio.checked = true;
+        document.getElementById('modal-testimonial').classList.add('open');
+    } else if (type === 'service') {
+        document.getElementById('smodal-title').textContent = data ? 'Edit Service' : 'Add Service';
+        document.getElementById('s-id').value = data?.id || '';
+        document.getElementById('s-emoji').value = data?.emoji || '';
+        document.getElementById('s-name').value = data?.name || '';
+        document.getElementById('s-tagline').value = data?.tagline || '';
+        document.getElementById('s-description').value = data?.description || '';
+        document.getElementById('s-b1').value = data?.bullet_1 || '';
+        document.getElementById('s-b2').value = data?.bullet_2 || '';
+        document.getElementById('s-b3').value = data?.bullet_3 || '';
+        document.getElementById('s-order').value = data?.sort_order || '';
+        document.getElementById('s-active').checked = data ? data.is_active !== false : true;
+        document.getElementById('modal-service').classList.add('open');
+    } else if (type === 'confirm') {
+        document.getElementById('modal-confirm').classList.add('open');
+    }
+    document.body.style.overflow = 'hidden';
+}
+
+function closeModal(type) {
+    document.getElementById('modal-' + type).classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+function closeModalIf(e, type) {
+    if (e.target === e.currentTarget) closeModal(type);
+}
+
+// ══════════════════════════════════════════════════════════
+// API HELPERS
+// ══════════════════════════════════════════════════════════
+async function apiGet(entity) {
+    const res = await fetch(`${API_BASE}/${entity}`, {
+        headers: { 'Content-Type': 'application/json' }
+    });
+    return res.json();
+}
+
+async function apiPost(entity, data) {
+    const res = await fetch(`${API_BASE}/${entity}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    });
+    return res.json();
+}
+
+async function apiPut(entity, id, data) {
+    const res = await fetch(`${API_BASE}/${entity}/${id}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+    });
+    return res.json();
+}
+
+async function apiDelete(entity, id) {
+    const res = await fetch(`${API_BASE}/${entity}/${id}`, { method: 'DELETE' });
+    return res.ok;
+}
+
+// ══════════════════════════════════════════════════════════
+// TESTIMONIALS
+// ══════════════════════════════════════════════════════════
+async function loadTestimonials() {
+    const data = await apiGet('Testimonial');
+    testimonials = (data.items || data || []).sort((a,b) => (a.sort_order||99) - (b.sort_order||99));
+    renderTestimonials();
+}
+
+function renderTestimonials() {
+    const el = document.getElementById('testimonials-list');
+    if (!testimonials.length) {
+        el.innerHTML = `<div class="text-center py-12 text-sm font-light" style="color:#9a8aac;">No testimonials yet. Add your first one!</div>`;
+        return;
+    }
+    el.innerHTML = testimonials.map(t => `
+        <div class="record-card mb-3 flex gap-4 items-start">
+            <div class="w-10 h-10 rounded-full flex items-center justify-center font-medium text-white flex-shrink-0 mt-0.5" style="background: linear-gradient(135deg, #7c5cbf, #c084a8); font-family: 'Cormorant Garamond', serif; font-size: 1.1rem;">
+                ${(t.name || '?')[0]}
+            </div>
+            <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 flex-wrap mb-1">
+                    <span class="font-medium text-sm">${escHtml(t.name || '')}</span>
+                    ${t.location ? `<span class="text-xs font-light" style="color:#9a8aac;">${escHtml(t.location)}</span>` : ''}
+                    <span class="${t.is_active !== false ? 'badge-active' : 'badge-inactive'}">${t.is_active !== false ? 'Visible' : 'Hidden'}</span>
+                    <span class="text-xs" style="color:#c9a84c;">${'★'.repeat(t.stars || 5)}</span>
+                </div>
+                <p class="text-sm font-light leading-relaxed" style="color:#5a4b6c;">"${escHtml(t.quote || '')}"</p>
+            </div>
+            <div class="flex gap-2 flex-shrink-0">
+                <button onclick="openModal('testimonial', testimonials.find(x=>x.id==='${t.id}'))" class="btn-ghost text-xs">
+                    <i class="fas fa-pen"></i>
+                </button>
+                <button onclick="askDelete('Testimonial','${t.id}','testimonial from ${escHtml(t.name||'')}',loadTestimonials)" class="btn-danger text-xs">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        </div>
+    `).join('');
+}
+
+async function saveTestimonial() {
+    const name = document.getElementById('t-name').value.trim();
+    const quote = document.getElementById('t-quote').value.trim();
+    if (!name || !quote) { showToast('Name and quote are required', 'error'); return; }
+
+    const btn = document.getElementById('t-save-btn');
+    btn.disabled = true; btn.innerHTML = '<div class="spinner" style="border-top-color:white;"></div> Saving...';
+
+    const id = document.getElementById('t-id').value;
+    const starsEl = document.querySelector('input[name="t-stars"]:checked');
+    const payload = {
+        name,
+        location: document.getElementById('t-location').value.trim(),
+        quote,
+        stars: starsEl ? parseInt(starsEl.value) : 5,
+        sort_order: parseInt(document.getElementById('t-order').value) || 99,
+        is_active: document.getElementById('t-active').checked
+    };
+
+    try {
+        if (id) { await apiPut('Testimonial', id, payload); }
+        else { await apiPost('Testimonial', payload); }
+        closeModal('testimonial');
+        await loadTestimonials();
+        showToast(id ? 'Testimonial updated ✨' : 'Testimonial added ✨');
+    } catch(e) {
+        showToast('Something went wrong. Try again.', 'error');
+    } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-save text-xs"></i> Save Testimonial';
+    }
+}
+
+// ══════════════════════════════════════════════════════════
+// SERVICES
+// ══════════════════════════════════════════════════════════
+async function loadServices() {
+    const data = await apiGet('Service');
+    services = (data.items || data || []).sort((a,b) => (a.sort_order||99) - (b.sort_order||99));
+    renderServices();
+}
+
+function renderServices() {
+    const el = document.getElementById('services-list');
+    if (!services.length) {
+        el.innerHTML = `<div class="text-center py-12 text-sm font-light" style="color:#9a8aac;">No services yet. Add your first one!</div>`;
+        return;
+    }
+    el.innerHTML = services.map(s => `
+        <div class="record-card mb-3 flex gap-4 items-start">
+            <div class="text-3xl flex-shrink-0 mt-0.5">${s.emoji || '✨'}</div>
+            <div class="flex-1 min-w-0">
+                <div class="flex items-center gap-2 flex-wrap mb-1">
+                    <span class="font-medium text-sm">${escHtml(s.name || '')}</span>
+                    ${s.tagline ? `<span class="text-xs font-light" style="color:#9a8aac;">${escHtml(s.tagline)}</span>` : ''}
+                    <span class="${s.is_active !== false ? 'badge-active' : 'badge-inactive'}">${s.is_active !== false ? 'Visible' : 'Hidden'}</span>
+                </div>
+                <p class="text-sm font-light leading-relaxed" style="color:#5a4b6c;">${escHtml((s.description||'').substring(0,120))}${(s.description||'').length > 120 ? '...' : ''}</p>
+                ${[s.bullet_1,s.bullet_2,s.bullet_3].filter(Boolean).map(b => `<span class="inline-block text-xs mr-3 mt-1" style="color:#9a8aac;">✦ ${escHtml(b)}</span>`).join('')}
+            </div>
+            <div class="flex gap-2 flex-shrink-0">
+                <button onclick="openModal('service', services.find(x=>x.id==='${s.id}'))" class="btn-ghost text-xs">
+                    <i class="fas fa-pen"></i>
+                </button>
+                <button onclick="askDelete('Service','${s.id}','${escHtml(s.name||'')} service',loadServices)" class="btn-danger text-xs">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        </div>
+    `).join('');
+}
+
+async function saveService() {
+    const name = document.getElementById('s-name').value.trim();
+    const desc = document.getElementById('s-description').value.trim();
+    if (!name || !desc) { showToast('Name and description are required', 'error'); return; }
+
+    const btn = document.getElementById('s-save-btn');
+    btn.disabled = true; btn.innerHTML = '<div class="spinner" style="border-top-color:white;"></div> Saving...';
+
+    const id = document.getElementById('s-id').value;
+    const payload = {
+        name,
+        emoji: document.getElementById('s-emoji').value.trim() || '✨',
+        tagline: document.getElementById('s-tagline').value.trim(),
+        description: desc,
+        bullet_1: document.getElementById('s-b1').value.trim(),
+        bullet_2: document.getElementById('s-b2').value.trim(),
+        bullet_3: document.getElementById('s-b3').value.trim(),
+        sort_order: parseInt(document.getElementById('s-order').value) || 99,
+        is_active: document.getElementById('s-active').checked
+    };
+
+    try {
+        if (id) { await apiPut('Service', id, payload); }
+        else { await apiPost('Service', payload); }
+        closeModal('service');
+        await loadServices();
+        showToast(id ? 'Service updated ✨' : 'Service added ✨');
+    } catch(e) {
+        showToast('Something went wrong. Try again.', 'error');
+    } finally {
+        btn.disabled = false;
+        btn.innerHTML = '<i class="fas fa-save text-xs"></i> Save Service';
+    }
+}
+
+// ══════════════════════════════════════════════════════════
+// DELETE
+// ══════════════════════════════════════════════════════════
+let _deleteCallback = null;
+function askDelete(entity, id, label, callback) {
+    pendingDelete = { entity, id };
+    _deleteCallback = callback;
+    document.getElementById('confirm-msg').textContent = `Delete the "${label}"? This cannot be undone.`;
+    openModal('confirm');
+}
+
+async function confirmDelete() {
+    const { entity, id } = pendingDelete;
+    closeModal('confirm');
+    await apiDelete(entity, id);
+    if (_deleteCallback) await _deleteCallback();
+    showToast('Deleted successfully');
+}
+
+// ══════════════════════════════════════════════════════════
+// UTILS
+// ══════════════════════════════════════════════════════════
+function escHtml(str) {
+    return (str || '').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+// ══════════════════════════════════════════════════════════
+// INIT
+// ══════════════════════════════════════════════════════════
+loadTestimonials();
+loadServices();
+</script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+{
+  "type": "object",
+  "properties": {
+    "name": {
+      "type": "string"
+    },
+    "location": {
+      "type": "string"
+    },
+    "quote": {
+      "type": "string"
+    },
+    "stars": {
+      "type": "number",
+      "enum": [
+        3,
+        4,
+        5
+      ]
+    },
+    "is_active": {
+      "type": "boolean"
+    },
+    "sort_order": {
+      "type": "number"
+    }
+  },
+  "required": [],
+  "name": "Testimonial"
+}
