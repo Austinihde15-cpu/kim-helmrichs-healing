@@ -422,9 +422,7 @@
 // ══════════════════════════════════════════════════════════
 // CONFIG — Base44 API
 // ══════════════════════════════════════════════════════════
-const APP_ID = '6a1d6fa795cce18bf986b605';
-const API_TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJlN2I5ZjhmOS02ODM2LTQ3NDctOTUxNC0zODI1ZDQzNTgxZjUiLCJjbGllbnRfaWQiOiJlN2I5ZjhmOS02ODM2LTQ3NDctOTUxNC0zODI1ZDQzNTgxZjUiLCJhcHBfaWQiOiI2YTFkNmZhNzk1Y2NlMThiZjk4NmI2MDUiLCJhdWQiOiJiYXNlNDRfYXBpIiwic2NvcGUiOiJhcHAuYWNjZXNzIiwiZXhwIjoxNzgxMDEzMzY0LCJpYXQiOjE3ODEwMDk3NjR9.je91tAhq4gFIiGdslmeieTHVIcPBOlPBeUERlcZu6fQ';
-const API_BASE = `https://api.base44.com/api/apps/${APP_ID}/entities`;
+const API_BASE = 'https://superagent-f986b605.base44.app/functions/adminApi';
 
 // We use the public/unauthenticated read for now;
 // for write operations we'll use the same endpoint
@@ -505,32 +503,32 @@ function closeModalIf(e, type) {
 // API HELPERS
 // ══════════════════════════════════════════════════════════
 async function apiGet(entity) {
-    const res = await fetch(`${API_BASE}/${entity}`, {
-        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + API_TOKEN }
+    const res = await fetch(`${API_BASE}?entity=${entity}`, {
+        headers: { 'Content-Type': 'application/json' }
     });
     return res.json();
 }
 
 async function apiPost(entity, data) {
-    const res = await fetch(`${API_BASE}/${entity}`, {
+    const res = await fetch(`${API_BASE}?entity=${entity}`, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + API_TOKEN },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
     });
     return res.json();
 }
 
 async function apiPut(entity, id, data) {
-    const res = await fetch(`${API_BASE}/${entity}/${id}`, {
+    const res = await fetch(`${API_BASE}?entity=${entity}&id=${id}`, {
         method: 'PUT',
-        headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + API_TOKEN },
+        headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(data)
     });
     return res.json();
 }
 
 async function apiDelete(entity, id) {
-    const res = await fetch(`${API_BASE}/${entity}/${id}`, { method: 'DELETE', headers: { 'Authorization': 'Bearer ' + API_TOKEN } });
+    const res = await fetch(`${API_BASE}?entity=${entity}&id=${id}`, { method: 'DELETE' });
     return res.ok;
 }
 
