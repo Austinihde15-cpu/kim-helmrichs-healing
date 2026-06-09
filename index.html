@@ -282,6 +282,78 @@
             0% { background-position: -200% center; }
             100% { background-position: 200% center; }
         }
+
+        /* Gallery */
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 1.25rem;
+            cursor: pointer;
+        }
+        .gallery-item img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4,0,0.2,1);
+            display: block;
+        }
+        .gallery-item:hover img { transform: scale(1.08); }
+        .gallery-overlay {
+            position: absolute; inset: 0;
+            background: linear-gradient(to top, rgba(45,27,78,0.7) 0%, transparent 60%);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            display: flex; align-items: flex-end;
+            padding: 1.25rem;
+        }
+        .gallery-item:hover .gallery-overlay { opacity: 1; }
+
+        /* Lightbox */
+        #lightbox {
+            display: none;
+            position: fixed; inset: 0;
+            background: rgba(15,8,32,0.95);
+            z-index: 1000;
+            align-items: center;
+            justify-content: center;
+        }
+        #lightbox.open { display: flex; }
+        #lightbox img {
+            max-width: 90vw;
+            max-height: 85vh;
+            border-radius: 1rem;
+            box-shadow: 0 40px 80px rgba(0,0,0,0.6);
+        }
+
+        /* Contact form */
+        .form-input {
+            width: 100%;
+            padding: 0.875rem 1.25rem;
+            border-radius: 0.875rem;
+            border: 1px solid rgba(199,168,210,0.35);
+            background: rgba(255,255,255,0.8);
+            font-family: 'Jost', sans-serif;
+            font-size: 0.95rem;
+            color: var(--deep);
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        .form-input:focus {
+            border-color: var(--lavender);
+            background: white;
+            box-shadow: 0 0 0 3px rgba(124,92,191,0.1);
+        }
+        .form-input::placeholder { color: #b0a0c0; }
+        textarea.form-input { resize: vertical; min-height: 130px; }
+
+        /* Success state */
+        #form-success {
+            display: none;
+            text-align: center;
+            padding: 3rem 2rem;
+        }
+        #form-success.show { display: block; }
+        #contact-form-wrap.hide { display: none; }
+
     </style>
 </head>
 <body>
@@ -301,7 +373,9 @@
             <a href="#about" class="nav-link text-white/80 hover:text-white">About</a>
             <a href="#services" class="nav-link text-white/80 hover:text-white">Services</a>
             <a href="#pricing" class="nav-link text-white/80 hover:text-white">Pricing</a>
+            <a href="#gallery" class="nav-link text-white/80 hover:text-white">Gallery</a>
             <a href="#testimonials" class="nav-link text-white/80 hover:text-white">Stories</a>
+            <a href="#contact" class="nav-link text-white/80 hover:text-white">Contact</a>
             <a href="#faq" class="nav-link text-white/80 hover:text-white">FAQ</a>
         </nav>
 
@@ -327,7 +401,9 @@
         <a href="#about" onclick="toggleMenu()" class="text-white/70 hover:text-white text-lg font-light">About Kim</a>
         <a href="#services" onclick="toggleMenu()" class="text-white/70 hover:text-white text-lg font-light">Services</a>
         <a href="#pricing" onclick="toggleMenu()" class="text-white/70 hover:text-white text-lg font-light">Pricing</a>
+        <a href="#gallery" onclick="toggleMenu()" class="text-white/70 hover:text-white text-lg font-light">Gallery</a>
         <a href="#testimonials" onclick="toggleMenu()" class="text-white/70 hover:text-white text-lg font-light">Client Stories</a>
+        <a href="#contact" onclick="toggleMenu()" class="text-white/70 hover:text-white text-lg font-light">Contact</a>
         <a href="#faq" onclick="toggleMenu()" class="text-white/70 hover:text-white text-lg font-light">FAQ</a>
         <a href="#book" onclick="toggleMenu()" class="btn-gold mt-4 px-6 py-3 rounded-full text-sm font-medium text-center">Book a Session</a>
     </nav>
@@ -613,6 +689,96 @@
 </section>
 
 
+
+<!-- ═══════════════════ GALLERY ═══════════════════ -->
+<section id="gallery" class="py-32 section-light relative overflow-hidden">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="text-center mb-20 reveal">
+            <div class="text-xs tracking-widest mb-4 font-light" style="color: var(--lavender);">THE SPACE & THE PRACTICE</div>
+            <h2 style="font-size: clamp(2.5rem, 5vw, 3.8rem); font-weight: 300;">A Glimpse of Serenity</h2>
+            <div class="gold-line mt-5"></div>
+            <p class="mt-5 text-sm font-light" style="color: #9a8aac;">Every element of Kim's practice is curated to hold you in peace.</p>
+        </div>
+
+        <!-- Masonry-style grid -->
+        <div class="grid grid-cols-2 md:grid-cols-3 gap-4 auto-rows-auto">
+
+            <!-- Tall left feature -->
+            <div class="gallery-item row-span-2 reveal" style="height: 520px;" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800&q=80" alt="Peaceful mountain healing landscape" loading="lazy">
+                <div class="gallery-overlay">
+                    <span class="text-white text-xs tracking-widest font-light">HEALING SPACE</span>
+                </div>
+            </div>
+
+            <!-- Top right -->
+            <div class="gallery-item reveal" style="height: 250px;" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=800&q=80" alt="Serene wellness practice" loading="lazy">
+                <div class="gallery-overlay">
+                    <span class="text-white text-xs tracking-widest font-light">CALM & RESTORED</span>
+                </div>
+            </div>
+
+            <!-- Top far right -->
+            <div class="gallery-item reveal" style="height: 250px;" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1447752875215-b2761acb3c5d?w=800&q=80" alt="Nature and healing energy" loading="lazy">
+                <div class="gallery-overlay">
+                    <span class="text-white text-xs tracking-widest font-light">NATURAL ENERGY</span>
+                </div>
+            </div>
+
+            <!-- Bottom middle -->
+            <div class="gallery-item reveal" style="height: 258px;" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1518241353330-0f7941c2d9b5?w=800&q=80" alt="Meditation and wellness" loading="lazy">
+                <div class="gallery-overlay">
+                    <span class="text-white text-xs tracking-widest font-light">INNER PEACE</span>
+                </div>
+            </div>
+
+            <!-- Bottom far right -->
+            <div class="gallery-item reveal" style="height: 258px;" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1545205597-3d9d02c29597?w=800&q=80" alt="Wellness and healing session" loading="lazy">
+                <div class="gallery-overlay">
+                    <span class="text-white text-xs tracking-widest font-light">DISTANCE HEALING</span>
+                </div>
+            </div>
+
+            <!-- Bottom wide row -->
+            <div class="gallery-item col-span-2 md:col-span-1 reveal" style="height: 240px;" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1499209974431-9dddcece7f88?w=1200&q=80" alt="Harmonic flow wellness nature" loading="lazy">
+                <div class="gallery-overlay">
+                    <span class="text-white text-xs tracking-widest font-light">PRAIRIE DU CHIEN, WI</span>
+                </div>
+            </div>
+
+            <div class="gallery-item reveal" style="height: 240px;" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1490730141103-6cac27aaab94?w=800&q=80" alt="Light and energy healing" loading="lazy">
+                <div class="gallery-overlay">
+                    <span class="text-white text-xs tracking-widest font-light">LIGHT & RENEWAL</span>
+                </div>
+            </div>
+
+            <div class="gallery-item reveal" style="height: 240px;" onclick="openLightbox(this)">
+                <img src="https://images.unsplash.com/photo-1470770903676-69b98201ea1c?w=800&q=80" alt="Peaceful water and nature" loading="lazy">
+                <div class="gallery-overlay">
+                    <span class="text-white text-xs tracking-widest font-light">MISSISSIPPI VALLEY</span>
+                </div>
+            </div>
+
+        </div>
+
+        <p class="text-center mt-10 text-xs tracking-widest font-light reveal" style="color: #b0a0c0;">
+            📸 Real photos of Kim's space coming soon — these are placeholder images.
+        </p>
+    </div>
+</section>
+
+<!-- Lightbox -->
+<div id="lightbox" onclick="closeLightbox()">
+    <button onclick="closeLightbox()" style="position:absolute; top:1.5rem; right:2rem; color:white; font-size:2rem; background:none; border:none; cursor:pointer; z-index:1001;">✕</button>
+    <img id="lightbox-img" src="" alt="Gallery image">
+</div>
+
 <!-- ═══════════════════ TESTIMONIALS ═══════════════════ -->
 <section id="testimonials" class="py-32 section-light">
     <div class="max-w-6xl mx-auto px-6">
@@ -742,6 +908,105 @@
     </div>
 </section>
 
+
+
+<!-- ═══════════════════ CONTACT FORM ═══════════════════ -->
+<section id="contact" class="py-32 section-purple relative overflow-hidden">
+    <div class="orb w-80 h-80 bg-rose-300 top-0 right-0" style="opacity:0.06;"></div>
+    <div class="max-w-3xl mx-auto px-6 relative z-10">
+        <div class="text-center mb-16 reveal">
+            <div class="text-xs tracking-widest mb-4 font-light" style="color: var(--lavender);">REACH OUT</div>
+            <h2 style="font-size: clamp(2.5rem, 5vw, 3.8rem); font-weight: 300;">Send Kim a Message</h2>
+            <div class="gold-line mt-5"></div>
+            <p class="mt-5 text-sm font-light" style="color: #9a8aac;">Questions, curiosity, or just saying hello — Kim reads every message personally.</p>
+        </div>
+
+        <div class="glow-card rounded-3xl p-10 md:p-14 reveal">
+
+            <!-- Success message (hidden by default) -->
+            <div id="form-success">
+                <div class="text-5xl mb-5">🌊</div>
+                <h3 style="font-size: 2rem; font-weight: 300; font-family: 'Cormorant Garamond', serif;" class="mb-3">Message received.</h3>
+                <p class="font-light" style="color: #6a5a7c;">Kim will be in touch within 24–48 hours. In the meantime, feel free to book a session directly.</p>
+                <a href="#book" class="mt-8 btn-gold inline-flex items-center gap-2 px-8 py-3.5 rounded-full text-sm font-medium">
+                    <i class="fas fa-calendar-alt text-xs"></i> Book a Session
+                </a>
+            </div>
+
+            <!-- Contact form -->
+            <div id="contact-form-wrap">
+                <form id="contact-form" onsubmit="submitForm(event)" novalidate>
+                    <div class="grid md:grid-cols-2 gap-5 mb-5">
+                        <div>
+                            <label class="block text-xs tracking-widest mb-2 font-light" style="color: var(--lavender);">FIRST NAME *</label>
+                            <input type="text" id="fname" class="form-input" placeholder="Your first name" required>
+                        </div>
+                        <div>
+                            <label class="block text-xs tracking-widest mb-2 font-light" style="color: var(--lavender);">LAST NAME</label>
+                            <input type="text" id="lname" class="form-input" placeholder="Your last name">
+                        </div>
+                    </div>
+
+                    <div class="mb-5">
+                        <label class="block text-xs tracking-widest mb-2 font-light" style="color: var(--lavender);">EMAIL ADDRESS *</label>
+                        <input type="email" id="femail" class="form-input" placeholder="your@email.com" required>
+                    </div>
+
+                    <div class="mb-5">
+                        <label class="block text-xs tracking-widest mb-2 font-light" style="color: var(--lavender);">PHONE (OPTIONAL)</label>
+                        <input type="tel" id="fphone" class="form-input" placeholder="(xxx) xxx-xxxx">
+                    </div>
+
+                    <div class="mb-5">
+                        <label class="block text-xs tracking-widest mb-2 font-light" style="color: var(--lavender);">WHAT BRINGS YOU HERE?</label>
+                        <select id="fservice" class="form-input">
+                            <option value="" disabled selected>Select a topic...</option>
+                            <option>General question about energy healing</option>
+                            <option>Emotion Code session inquiry</option>
+                            <option>Body Code session inquiry</option>
+                            <option>Access Bars session inquiry</option>
+                            <option>Transformation package inquiry</option>
+                            <option>Scheduling / availability</option>
+                            <option>Something else</option>
+                        </select>
+                    </div>
+
+                    <div class="mb-8">
+                        <label class="block text-xs tracking-widest mb-2 font-light" style="color: var(--lavender);">YOUR MESSAGE *</label>
+                        <textarea id="fmessage" class="form-input" placeholder="Share what's on your heart, a question, or anything you'd like Kim to know before your session..." required></textarea>
+                    </div>
+
+                    <div id="form-error" class="hidden mb-5 p-4 rounded-xl text-sm font-light" style="background: rgba(239,68,68,0.08); color: #dc2626; border: 1px solid rgba(239,68,68,0.2);">
+                        Please fill in all required fields (name, email, message).
+                    </div>
+
+                    <button type="submit" id="form-submit" class="btn-gold w-full py-4 rounded-full font-medium text-base flex items-center justify-center gap-2">
+                        <i class="fas fa-paper-plane text-sm"></i>
+                        <span id="submit-text">Send Message to Kim</span>
+                    </button>
+
+                    <p class="text-center mt-5 text-xs font-light" style="color: #b0a0c0;">
+                        <i class="fas fa-lock mr-1"></i> Your message is private. Kim responds within 24–48 hours.
+                    </p>
+                </form>
+            </div>
+        </div>
+
+        <!-- Direct contact options -->
+        <div class="grid grid-cols-2 gap-4 mt-8 reveal">
+            <a href="tel:5634514032" class="glow-card rounded-2xl p-5 text-center transition-all hover:shadow-lg">
+                <i class="fas fa-phone text-xl mb-2" style="color: var(--lavender);"></i>
+                <div class="text-sm font-medium">(563) 451-4032</div>
+                <div class="text-xs font-light mt-1" style="color: #9a8aac;">Call Kim directly</div>
+            </a>
+            <a href="mailto:kim@harmonicflowwellness.com" class="glow-card rounded-2xl p-5 text-center transition-all hover:shadow-lg">
+                <i class="fas fa-envelope text-xl mb-2" style="color: var(--lavender);"></i>
+                <div class="text-sm font-medium">kim@harmonicflowwellness.com</div>
+                <div class="text-xs font-light mt-1" style="color: #9a8aac;">Email directly</div>
+            </a>
+        </div>
+    </div>
+</section>
 
 <!-- ═══════════════════ BOOKING / CTA ═══════════════════ -->
 <section id="book" class="py-32 relative overflow-hidden">
@@ -895,6 +1160,59 @@
         });
     }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    // ── Lightbox ──
+    function openLightbox(el) {
+        const img = el.querySelector('img');
+        document.getElementById('lightbox-img').src = img.src;
+        document.getElementById('lightbox').classList.add('open');
+        document.body.style.overflow = 'hidden';
+    }
+    function closeLightbox() {
+        document.getElementById('lightbox').classList.remove('open');
+        document.body.style.overflow = '';
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+    // ── Contact Form ──
+    function submitForm(e) {
+        e.preventDefault();
+        const fname = document.getElementById('fname').value.trim();
+        const femail = document.getElementById('femail').value.trim();
+        const fmessage = document.getElementById('fmessage').value.trim();
+        const errEl = document.getElementById('form-error');
+
+        if (!fname || !femail || !fmessage) {
+            errEl.classList.remove('hidden');
+            return;
+        }
+        errEl.classList.add('hidden');
+
+        const btn = document.getElementById('form-submit');
+        const txt = document.getElementById('submit-text');
+        btn.disabled = true;
+        txt.textContent = 'Sending...';
+
+        // Build mailto fallback (works without backend)
+        const lname = document.getElementById('lname').value.trim();
+        const fphone = document.getElementById('fphone').value.trim();
+        const fservice = document.getElementById('fservice').value;
+        const subject = encodeURIComponent('Harmonic Flow Wellness — New Inquiry from ' + fname);
+        const body = encodeURIComponent(
+            'Name: ' + fname + ' ' + lname +
+            '\nEmail: ' + femail +
+            (fphone ? '\nPhone: ' + fphone : '') +
+            (fservice ? '\nTopic: ' + fservice : '') +
+            '\n\nMessage:\n' + fmessage
+        );
+
+        // Open mailto in background then show success
+        setTimeout(() => {
+            window.location.href = 'mailto:kim@harmonicflowwellness.com?subject=' + subject + '&body=' + body;
+            document.getElementById('contact-form-wrap').classList.add('hide');
+            document.getElementById('form-success').classList.add('show');
+        }, 600);
+    }
+
 </script>
 
 </body>
