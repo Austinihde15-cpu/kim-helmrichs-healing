@@ -38,7 +38,7 @@
       "description": "Certified Emotion Code®, Body Code® and Access Bars® energy healing practitioner offering distance and in-person sessions.",
       "url": "https://harmonicflowwellness.com/",
       "telephone": "+15634514032",
-      "email": "kim@harmonicflowwellness.com",
+      "email": "harmonicflowwellnessws@gmail.com",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Prairie du Chien",
@@ -1046,7 +1046,7 @@
         <!-- Calendly embed placeholder -->
         <div class="rounded-3xl overflow-hidden shadow-2xl mb-8 border" style="border-color: rgba(201,168,76,0.2);">
             <div class="calendly-inline-widget"
-                 data-url="https://calendly.com/YOUR_CALENDLY_LINK/session"
+                 data-url="https://calendly.com/harmonicflowwellness"
                  style="min-width:320px; height:700px;"></div>
         </div>
 
@@ -1207,25 +1207,43 @@
         btn.disabled = true;
         txt.textContent = 'Sending...';
 
-        // Build mailto fallback (works without backend)
         const lname = document.getElementById('lname').value.trim();
         const fphone = document.getElementById('fphone').value.trim();
         const fservice = document.getElementById('fservice').value;
-        const subject = encodeURIComponent('Harmonic Flow Wellness — New Inquiry from ' + fname);
-        const body = encodeURIComponent(
-            'Name: ' + fname + ' ' + lname +
-            '\nEmail: ' + femail +
-            (fphone ? '\nPhone: ' + fphone : '') +
-            (fservice ? '\nTopic: ' + fservice : '') +
-            '\n\nMessage:\n' + fmessage
-        );
 
-        // Open mailto in background then show success
-        setTimeout(() => {
-            window.location.href = 'mailto:kim@harmonicflowwellness.com?subject=' + subject + '&body=' + body;
-            document.getElementById('contact-form-wrap').classList.add('hide');
-            document.getElementById('form-success').classList.add('show');
-        }, 600);
+        const formData = {
+            name: fname + ' ' + lname,
+            email: femail,
+            phone: fphone,
+            service: fservice,
+            message: fmessage,
+            _subject: 'Harmonic Flow Wellness — New Inquiry from ' + fname,
+            _replyto: femail
+        };
+
+        fetch('https://formspree.io/f/xkgwbvqe', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(formData)
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.ok || data.next) {
+                document.getElementById('contact-form-wrap').classList.add('hide');
+                document.getElementById('form-success').classList.add('show');
+            } else {
+                txt.textContent = 'Send Message';
+                btn.disabled = false;
+                errEl.textContent = 'Something went wrong. Please try again.';
+                errEl.classList.remove('hidden');
+            }
+        })
+        .catch(() => {
+            txt.textContent = 'Send Message';
+            btn.disabled = false;
+            errEl.textContent = 'Network error. Please try again.';
+            errEl.classList.remove('hidden');
+        });
     }
 
 </script>
